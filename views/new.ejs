@@ -1,0 +1,83 @@
+<% layout("/layouts/boilerplate") %>
+
+<div class="row">
+    <div class="col-8 offset-2">
+    <br>
+
+    <h1>Create a New Listing</h1>
+
+    <form action="/listings" method="POST">
+
+        <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input
+                type="text"
+                id="title"
+                name="Listing[title]"
+                class="form-control"
+                placeholder="Enter title"
+                required>
+        </div>
+
+        <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea
+                id="description"
+                name="Listing[description]"
+                class="form-control"
+                placeholder="Enter description"
+                required></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label for="image" class="form-label">Image Link</label>
+            <input
+                type="text"
+                id="image"
+                name="Listing[image][url]"
+                class="form-control"
+                placeholder="Enter image URL/Link">
+        </div>
+        <div class="row">
+            <div class="mb-3 col-md-4">
+            <label for="price" class="form-label">Price</label>
+            <input
+                type="number"
+                id="price"
+                name="Listing[price]"
+                class="form-control"
+                placeholder="Enter price"
+                required>
+        </div>
+
+        <div class="mb-3 col-md-8">
+            <label for="country" class="form-label">Country</label>
+            <input
+                type="text"
+                id="country"
+                name="Listing[country]"
+                class="form-control"
+                placeholder="Enter country"
+                required>
+        </div>
+
+        </div>
+
+        
+        <div class="mb-3">
+            <label for="location" class="form-label">Location</label>
+            <input
+                type="text"
+                id="location"
+                name="Listing[location]"
+                class="form-control"
+                placeholder="Enter location"
+                required>
+        </div>
+
+        <button class="btn btn-dark my-btn" type="submit">Create</button>
+
+    </form>
+</div>
+</div>
+</div>
