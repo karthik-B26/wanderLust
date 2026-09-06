@@ -19,9 +19,11 @@ async function main() {
 }
 //satrt server 
 const startserveranddb=()=>{
-    app.listen(1000,()=>{
-        console.log("server started at http://localhost:1000")
-    })
+    const PORT = process.env.PORT || 1000;
+
+app.listen(PORT, () => {
+    console.log(`server started on port ${PORT}`);
+});
     main().then(resp=>{console.log("data base and server intialized")}).catch(err=>{console.log(err.message)});
 }
 // get listss
