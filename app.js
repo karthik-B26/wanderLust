@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express=require("express")
 const app=express();
 const ejs=require("ejs")
@@ -13,9 +14,8 @@ app.use(express.static(path.join(__dirname,"public")));
 const methodOverride = require('method-override');
 app.use(methodOverride("_method"))
 app.engine('ejs',ejsMate)
-async function main (){
-    const url ="mongodb+srv://karthikovis_db_user:karthik@cluster0.lty6j0k.mongodb.net/?appName=Cluster0"
-    await mongoose.connect(url);
+async function main() {
+    await mongoose.connect(process.env.MONGO_URL);
 }
 //satrt server 
 const startserveranddb=()=>{
