@@ -20,14 +20,54 @@
                 </form>
 
                 <form class="flex-fill" action="/listings/<%= result.id %>?_method=DELETE" method="POST">
-                    <button class="btn btn-dark w-100" type="submit">DELETE</button>
+                    <button class="btn btn-outline-dark w-100" type="submit">DELETE</button>
                 </form>
             </div>
            
         </div>
         <br>
+        <form method="POST" action="/listings/<%=result.id%>/reviews" class="mb-3 needs-validation" novalidate>
+            <div class="mb-3">
+                    <label for="range2" class="form-label">Rate us </label>
+                <input type="range" class="form-range" min="1" max="5" id="range2" name="review[rating]" required>
+                <div class="invalid-feedback" >Please enter the stars </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label"> Lave us a comment</label>
+                <textarea class="form-control" cols="30" rows="5" name="review[comment]"></textarea>
+            </div>
+            <button type="submit" class="btn btn-outline-dark">Submit Review</button>
+        </form> 
+<p>All reviews</p>
+
+<div class="row g-4 mb-3">
+
+    <% for (let review of result.reviews) { %>
+
+        <div class="col-12 col-md-6">
+    <div class="card reviewb h-100 position-relative">
+
+        <div class="card-body">
+            <h5 class="card-title">John Doe</h5>
+
+            <p class="card-text">
+                Rating: <%= review.rating %> ⭐
+            </p>
+
+            <p class="card-text">
+                <%= review.comment %>
+            </p>
+        </div>
+        <form action="" class="m-3"><buttton class="btn btn-dark w-50%" type="submit" >Delete</buttton></form>
+       
+
+    </div>
+</div>
+    <% } %>
+
+</div>
+        
     </div>
     </div>
     </div>
    
-        
