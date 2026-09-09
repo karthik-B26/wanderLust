@@ -3,18 +3,16 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const ejsMate = require("ejs-mate");
+const session =require("express-session")
 const path = require("path");
-app.set("view engine", "ejs");
-app.set("views", path.join(__dirname, "views"));
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, "public")));
 const methodOverride = require("method-override");
-app.use(methodOverride("_method"));
-app.engine("ejs", ejsMate);
 const ExpressError = require("./utils/customerror");
 const listing=require("./routes/listing");
 const review=require("./routes/review");
+const flash=require("connect-flash")
+const passport =require("passport")
+const passportl =require("passport-local")
+const User=require("./models/user.js")
 
 
 async function main() {
@@ -31,8 +29,49 @@ const startserveranddb = () => {
   });
   main().then((resp) => {console.log("data base and server intialized");}).catch((err) => {console.log(err.message); });};
 
+app.engine("ejs", ejsMate); 
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "views"));
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, "public")));
+app.use(methodOverride("_method"));
+
+const options ={
+  secret:"secret",
+  resave:false,
+  saveUninitialized:true,
+  cookie:{
+    expires:Date.now()+7 * 24 * 60 * 60 * 100,
+    maxAge:7 * 24 * 60 * 60 * 1000,
+    httpOnly:true
+  }
+}
+app.use(session(options))
+app.use(flash())
+app.use((req, res, next) => {
+    res.locals.success = req.flash("success");
+    next();
+});
+app.use(passport.initialize())
+app.use(passport.session())
+passport.use(new passportl(User.authenticate()));
+passport.serializeUser(User.serializeUser())
+passport.deserializeUser(User.deserializeUser())
+
+
 app.use("/listings",listing)
+
 app.use("/listings/:id/reviews",review)
+app.get("/users",async (req,res)=>{
+  let newuser=new User({
+    email:"hello@getMaxListeners.com",
+    username:"santoshhh"
+  })
+  let hi=await User.register(newuser,"h")
+  res.send(hi)
+})
 
  app.all("/*splat", (req, res, next) => {
     next(new ExpressError(404, "Page not Found"));

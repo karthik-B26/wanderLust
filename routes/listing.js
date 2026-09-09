@@ -34,6 +34,7 @@ router.get("/new", (req, resp) => {
 router.post("/", validatelisting,wrapAsync(async (req, resp) => {
     let listing1 = new Listing({ ...req.body.Listing });
     await listing1.save();
+    req.flash("success", "New Listing Created");
     resp.redirect("/listings");
   
 }));
@@ -61,6 +62,7 @@ router.get("/:id", wrapAsync (async (req, resp) => {
 router.put("/:id",validatelisting, wrapAsync(async (req, resp) => {
   let { id } = req.params;
   let result = await Listing.findByIdAndUpdate(id, { ...req.body.Listing });
+   req.flash("success", " Listing Edited");
   resp.redirect(`/listings/${id}`);
 }));
 
@@ -68,6 +70,7 @@ router.put("/:id",validatelisting, wrapAsync(async (req, resp) => {
 router.delete("/:id", wrapAsync(async (req, resp) => {
   let { id } = req.params;
   let result = await Listing.findByIdAndDelete(id);
+   req.flash("success", " Listing Deleted");
   resp.redirect(`/listings`);
 }));
 

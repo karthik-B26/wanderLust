@@ -27,4 +27,10 @@ router.post("/",validatereview,wrapAsync(async (req,res)=>{
      await listing1.save()
      res.redirect(`/listings/${id}/`)
 }))
+router.delete("/:reviewid",wrapAsync(async (req,res)=>{
+    let { id,reviewid} = req.params;
+    await Listing.findByIdAndUpdate(id,{$pull:{reviews:reviewid}})
+    await Review.findByIdAndDelete(reviewid)
+    res.redirect(`/listings/${id}/`)
+}))
 module.exports=router;
