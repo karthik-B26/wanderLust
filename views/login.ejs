@@ -1,0 +1,52 @@
+<% layout("/layouts/boilerplate") %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="row">
+        <div class="col-6 offset-3">
+            <form action="/login" method="POST" 
+    class="needs-validation" novalidate>
+
+        <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input
+                type="text"
+                id="username"
+                name="username"
+                class="form-control"
+                placeholder="Enter username"
+                required>
+                 <div class="invalid-feedback">
+                    Please enter username.
+                </div>
+        </div>
+    
+        <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input
+                type="password"
+                id="password"
+                name="password"
+                class="form-control"
+                placeholder="Enter Password"
+                required>
+                <div class="invalid-feedback">
+                    Please Enter Password.
+                </div>
+        </div>
+        
+        <button class="btn btn-dark my-btn" type="submit">Create Account</button>
+
+    </form>
+        </div>
+        
+    </div>
+    
+    
+</body>
+</html>

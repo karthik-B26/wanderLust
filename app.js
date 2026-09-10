@@ -9,16 +9,14 @@ const methodOverride = require("method-override");
 const ExpressError = require("./utils/customerror");
 const listing=require("./routes/listing");
 const review=require("./routes/review");
+const user=require("./routes/user");
 const flash=require("connect-flash")
 const passport =require("passport")
 const passportl =require("passport-local")
 const User=require("./models/user.js")
-
-
 async function main() {
   await mongoose.connect(process.env.MONGO_URL);
 }
-
 //satrt server
 const startserveranddb = () => {
   const PORT = process.env.PORT || 1000;
@@ -52,6 +50,8 @@ app.use(session(options))
 app.use(flash())
 app.use((req, res, next) => {
     res.locals.success = req.flash("success");
+    res.locals.failure = req.flash("failure");
+    res.locals.error = req.flash("error");
     next();
 });
 app.use(passport.initialize())
@@ -62,16 +62,17 @@ passport.deserializeUser(User.deserializeUser())
 
 
 app.use("/listings",listing)
-
 app.use("/listings/:id/reviews",review)
-app.get("/users",async (req,res)=>{
-  let newuser=new User({
-    email:"hello@getMaxListeners.com",
-    username:"santoshhh"
-  })
-  let hi=await User.register(newuser,"h")
-  res.send(hi)
-})
+app.use("/",user)
+
+// app.get("/users",async (req,res)=>{
+//   let newuser=new User({
+//     email:"hello@getMaxListeners.com",
+//     username:"santoshhh"
+//   })
+//   let result=await User.register(newuser,"h")
+//   res.send(result)
+// })
 
  app.all("/*splat", (req, res, next) => {
     next(new ExpressError(404, "Page not Found"));
