@@ -19,7 +19,7 @@ async function main() {
 }
 //satrt server
 const startserveranddb = () => {
-  const PORT = process.env.PORT || 1000;
+  const PORT = process.env.PORT || 2000;
 
   app.listen(PORT, () => {
     console.log(`server started on port ${PORT}`);
@@ -35,7 +35,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(methodOverride("_method"));
-
 const options ={
   secret:"secret",
   resave:false,
@@ -48,31 +47,29 @@ const options ={
 }
 app.use(session(options))
 app.use(flash())
-app.use((req, res, next) => {
-    res.locals.success = req.flash("success");
-    res.locals.failure = req.flash("failure");
-    res.locals.error = req.flash("error");
-    next();
-});
+
 app.use(passport.initialize())
 app.use(passport.session())
 passport.use(new passportl(User.authenticate()));
 passport.serializeUser(User.serializeUser())
 passport.deserializeUser(User.deserializeUser())
+app.use((req, res, next) => {
+    res.locals.success = req.flash("success");
+    res.locals.failure = req.flash("failure");
+    res.locals.error = req.flash("error");
+    res.locals.user = req.user;
+    res.locals.currentUrl = req.originalUrl;
+    next();
+});
 
-
+app.get("/",(req,resp)=>{
+  resp.redirect("/listings")
+})
 app.use("/listings",listing)
 app.use("/listings/:id/reviews",review)
 app.use("/",user)
 
-// app.get("/users",async (req,res)=>{
-//   let newuser=new User({
-//     email:"hello@getMaxListeners.com",
-//     username:"santoshhh"
-//   })
-//   let result=await User.register(newuser,"h")
-//   res.send(result)
-// })
+
 
  app.all("/*splat", (req, res, next) => {
     next(new ExpressError(404, "Page not Found"));
