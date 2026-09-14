@@ -8,7 +8,7 @@
 
         <a href="/listings/<%= listing.id %>" class="content">
 
-            <div class="card">
+            <div class="card listing-card">
 
                 <img
                     src="<%= listing.image.url %>"
@@ -16,7 +16,11 @@
                     alt="Listing image"
                 >
 
-                <div class="card-img-overlay">.</div>
+                <!-- <div class="card-img-overlay">.</div> -->
+                <div class=" fav">
+    <i class="fa-regular fa-heart heart-outline"></i>
+    <i class="fa-solid fa-heart heart-filled"></i>
+</div>
 
                 <div class="card-body">
                     <b>
@@ -24,10 +28,11 @@
                             <%= listing.title %>
                         </p>
                     </b>
-
-                    <span class="boldd">
+                    <p><%=listing.location%>,<%=listing.country%></p>
+                    
+                    <p p class="boldd">
                         &#x20B9;<%= listing.price.toLocaleString("en-IN") %>/ night
-                    </span>
+                    </p>
                 </div>
 
             </div>

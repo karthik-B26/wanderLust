@@ -1,5 +1,28 @@
 const Listing = require("./models/listing.js");
 const Review = require("./models/review.js");
+const { listingSchema } = require("./validation/vailidateschema.js")
+const { ReviewSchema } = require("./validation/validateReview.js");
+
+module.exports.validatelisting=(req, res, next) =>{
+    const { error } = listingSchema.validate(req.body);
+
+    if (error) {
+        return next(new ExpressError(400, error.message));
+    }
+
+    next();
+}
+module.exports.validatereview=(req, res, next) =>{
+    const { error } = ReviewSchema.validate(req.body);
+
+    if (error) {
+        return next(new ExpressError(400, error.message));
+    }
+
+    next();
+}
+
+
 module.exports.isLogedIn = (req, res, next) => {
     if (!req.isAuthenticated()) {
         req.session.redirectUrl = req.originalUrl;

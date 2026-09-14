@@ -1,44 +1,100 @@
 <% layout("/layouts/boilerplate") %>
 
-<div class="row">
-    <div class="col-6 offset-3">
+<div class="row login-page">
 
-<form action="/login" method="POST"
-      class="needs-validation" novalidate>
-
-    <div class="mb-3">
-        <label for="username" class="form-label">
-            Username
-        </label>
-
-        <input
-            type="text"
-            id="username"
-            name="username"
-            class="form-control"
-            placeholder="Enter username"
-            required>
+    <!-- LEFT IMAGE -->
+<div class="col-md-5 cont">
+        <div class="bg"></div>
     </div>
 
-    <div class="mb-3">
-        <label for="password" class="form-label">
-            Password
-        </label>
+    <!-- RIGHT LOGIN -->
+    <div class="col-md-7">
 
-        <input
-            type="password"
-            id="password"
-            name="password"
-            class="form-control"
-            placeholder="Enter Password"
-            required>
+        <div class="main row justify-content-center align-items-center">
+
+            <div class="login-wrapper">
+
+                <form action="/login" method="POST">
+
+                    <div class="login-heading">
+                        <h3>Welcome Back 👋</h3>
+                        <p>Login to continue your journey with WanderLust</p>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="username" class="login-label">
+                            Username
+                        </label>
+
+                        <input
+                            type="text"
+                            id="username"
+                            name="username"
+                            class="formcontrol"
+                            placeholder="Enter username"
+                            required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="password" class="login-label">
+                            Password
+                        </label>
+
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            class="formcontrol"
+                            placeholder="Enter password"
+                            required>
+                    </div>
+
+                    <div class="login-options">
+
+                        <div>
+                            <input type="checkbox" id="remember">
+                            <label for="remember">Remember me</label>
+                        </div>
+
+                        <a href="#">Forgot password?</a>
+
+                    </div>
+
+                    <button class="btn btn-danger loginbtn" type="submit">
+                        Login
+                    </button>
+
+                    <div class="divider">
+                        <span></span>
+                        <p>or continue with</p>
+                        <span></span>
+                    </div>
+
+                    <div class="social-login">
+
+                        <button type="button" class="social-btn">
+                            <i class="fa-brands fa-google"></i>
+                            Continue with Google
+                        </button>
+
+                        <button type="button" class="social-btn">
+                            <i class="fa-brands fa-github"></i>
+                            Continue with GitHub
+                        </button>
+
+                    </div>
+
+                    <div class="signup-link">
+                        <span>Don't have an account?</span>
+                        <a href="/signup">Sign Up</a>
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
     </div>
 
-    <button class="btn btn-dark my-btn" type="submit">
-        Login
-    </button>
-
-</form>
-
-    </div>
 </div>

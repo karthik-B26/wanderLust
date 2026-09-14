@@ -1,64 +1,141 @@
 <% layout("/layouts/boilerplate") %>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <div class="row">
-        <div class="col-6 offset-3">
-            <form action="/signup" method="POST" 
-    class="needs-validation" novalidate>
 
-        <div class="mb-3">
-            <label for="username" class="form-label">Username</label>
-            <input
-                type="text"
-                id="username"
-                name="username"
-                class="form-control"
-                placeholder="Enter username"
-                required>
-                 <div class="invalid-feedback">
-                    Please enter username.
-                </div>
-        </div>
-        <div class="mb-3">
-            <label for="email" class="form-label">Email</label>
-            <input
-                type="email"
-                name="email"
-                class="form-control"
-                placeholder="Enter Email"
-                required>
-                <div class="invalid-feedback">
-                    Please Enter Email.
-                </div>
-        </div>
+<div class="row login-page">
 
-        <div class="mb-3">
-            <label for="password" class="form-label">Password</label>
-            <input
-                type="password"
-                id="password"
-                name="password"
-                class="form-control"
-                placeholder="Enter Password"
-                required>
-                <div class="invalid-feedback">
-                    Please Enter Password.
-                </div>
-        </div>
-        
-        <button class="btn btn-dark my-btn" type="submit">Create Account</button>
-
-    </form>
-        </div>
-        
+    <!-- LEFT IMAGE -->
+    <div class="col-5 cont">
+        <div class="bg signup-bg"></div>
     </div>
-    
-    
-</body>
-</html>
+
+    <!-- RIGHT SIGNUP -->
+    <div class="col-7">
+
+        <div class="main row justify-content-center align-items-center">
+
+            <div class="login-wrapper">
+
+                <form action="/signup" method="POST"
+                      class="needs-validation" novalidate>
+
+                    <!-- Heading -->
+                    <div class="login-heading">
+                        <h3>Create Your Account 🎉</h3>
+                        <p>Start your adventure with WanderLust today</p>
+                    </div>
+
+
+                    <!-- Username -->
+                    <div class="mb-3">
+
+                        <label for="username" class="login-label">
+                            Username
+                        </label>
+
+                        <input
+                            type="text"
+                            id="username"
+                            name="username"
+                            class="formcontrol"
+                            placeholder="Choose a username"
+                            required>
+
+                        <div class="invalid-feedback">
+                            Please enter username.
+                        </div>
+
+                    </div>
+
+
+                    <!-- Email -->
+                    <div class="mb-3">
+
+                        <label for="email" class="login-label">
+                            Email
+                        </label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            class="formcontrol"
+                            placeholder="Enter your email"
+                            required>
+
+                        <div class="invalid-feedback">
+                            Please enter a valid email.
+                        </div>
+
+                    </div>
+
+
+                    <!-- Password -->
+                    <div class="mb-3">
+
+                        <label for="password" class="login-label">
+                            Password
+                        </label>
+
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            class="formcontrol"
+                            placeholder="Create a password"
+                            required>
+
+                        <div class="invalid-feedback">
+                            Please enter password.
+                        </div>
+
+                    </div>
+
+
+                    <!-- Create Account -->
+                    <button class="btn btn-danger loginbtn" type="submit">
+                        Create Account
+                    </button>
+
+
+                    <!-- Divider -->
+                    <div class="divider">
+
+                        <span></span>
+
+                        <p>or sign up with</p>
+
+                        <span></span>
+
+                    </div>
+
+
+                    <!-- Social Signup -->
+                    <div class="social-login">
+
+                        <button type="button" class="social-btn">
+                            <i class="fa-brands fa-google"></i>
+                            Continue with Google
+                        </button>
+
+                        <button type="button" class="social-btn">
+                            <i class="fa-brands fa-github"></i>
+                            Continue with GitHub
+                        </button>
+
+                    </div>
+
+
+                    <!-- Login -->
+                    <div class="signup-link">
+                        <span>Already have an account?</span>
+                        <a href="/login">Login</a>
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
